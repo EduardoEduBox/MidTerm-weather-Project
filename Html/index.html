@@ -7,8 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather</title>
     <link rel="stylesheet" href="../Css/style.css" />
-    <script async
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDoagFtZglLk9Jwc39rKnvTR47ZvWTspJ8&libraries=places&callback=initMap"></script>
+
 </head>
 
 <body>
@@ -25,6 +24,10 @@
     <main id="currentWeather">
         <div class="currentWeatherCity">
             <h3 id="cityName"></h3>
+            <div class="weatherPosition">
+                <span id="latitude"></span>
+                <span id="longtitude"></span>
+            </div>
             <div class="currentWeatherStarIcon">
                 <img id="favoriteBtn" src="../Css/assets/Star_icon_stylized.svg.png" alt="" />
             </div>
@@ -135,6 +138,8 @@
 
 
     <script src="../JS/weatherAPIs.js"></script>
+    <script async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDoagFtZglLk9Jwc39rKnvTR47ZvWTspJ8&libraries=places&callback=initMap"></script>
     <script src="../JS/backgroundImages.js"></script>
 </body>
 

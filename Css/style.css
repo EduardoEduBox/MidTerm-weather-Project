@@ -70,6 +70,9 @@ main .currentWeatherCity {
   justify-content: center;
   box-sizing: border-box;
 }
+main .currentWeatherCity .weatherPosition {
+  display: none;
+}
 main .currentWeatherCity .currentWeatherStarIcon {
   position: relative;
   left: 25%;

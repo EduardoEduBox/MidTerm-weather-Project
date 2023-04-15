@@ -1,5 +1,15 @@
+let cityName;
+const select = document.querySelector('#select');
 const myImage = document.getElementById("favoriteBtn");
 let toggleFavorite;
+let changeDropDown;
+
+const clearDropDown = () => {
+    let children = select.children;
+    for (let i = children.length - 1; i > 0; i--) {
+        select.removeChild(children[i]);
+    }
+}
 
 const fetchDataAndDisplay = async (lat, lon) => {
     const response = await fetch(
@@ -7,7 +17,7 @@ const fetchDataAndDisplay = async (lat, lon) => {
     );
     const jsonData = await response.json()
 
-    const cityName = document.getElementById("cityName");
+    cityName = document.getElementById("cityName");
     const currentTemp = document.getElementById("currentTemp");
     const weatherDescription = document.getElementById("weatherDescription");
     const humidity = document.getElementById("humidity");
@@ -30,26 +40,31 @@ const fetchDataAndDisplay = async (lat, lon) => {
 
 const executeFunc = async (lat, lon) => {
 
+    const latitude = document.getElementById("latitude");
+    const longtitude = document.getElementById("longtitude");
+    latitude.innerText = lat;
+    longtitude.innerText = lon;
+
     await fetchDataAndDisplay(lat, lon)
 
-    // localStorage
-
-    let favoriteCitiesJSON = localStorage.getItem("favoriteCities");
-    let favoriteCities = JSON.parse(favoriteCitiesJSON);
-
-    const select = document.querySelector('#select');
-    select.addEventListener('change', (e) => {
+    changeDropDown = (e) => {
         const position = e.target.value.split(' ');
         if (position.length) {
+            myImage.classList.add("yes");
+
             const [lat, lon] = position;
-            console.log(lat, lon)
             fetchDataAndDisplay(lat, lon)
             fetch5daysWeather(lat, lon);
         }
-    });
+    }
+
+    select.addEventListener('change', changeDropDown);
 
     myImage.classList.remove("yes");
 
+    // localStorage
+    const favoriteCitiesJSON = localStorage.getItem("favoriteCities");
+    let favoriteCities = JSON.parse(favoriteCitiesJSON);
 
     try {
         function updateDropdown(city_item) {
@@ -63,6 +78,8 @@ const executeFunc = async (lat, lon) => {
         // after everything ok, add the image classList and updating the dropdown
 
         if (favoriteCities) {
+            clearDropDown()
+
             favoriteCities.forEach((city) => {
                 if (city.name == cityName.textContent) {
                     if (city.favorite === true) {
@@ -80,28 +97,36 @@ const executeFunc = async (lat, lon) => {
             // Check if the actual city matches with the localStorage existing json
             // If not, create a new null array
 
+            const latitude = document.getElementById("latitude");
+            const longtitude = document.getElementById("longtitude");
+            const _lat = latitude.innerText
+            const _lon = longtitude.innerText
+
             if (!favoriteCities) {
                 favoriteCities = [];
             }
             let favoriteCity = {
                 name: cityName.textContent,
-                lat: lat,
-                lon: lon,
+                lat: _lat,
+                lon: _lon,
                 favorite: true
             }
 
             if (!myImage.classList.contains("yes")) {
-                favoriteCities.push(favoriteCity);
-                console.log(favoriteCity)
-                localStorage.setItem('favoriteCities', JSON.stringify(favoriteCities));
 
-                favoriteCities.forEach((city) => {
-                    if (city.name == cityName.textContent) {
-                        if (city.favorite === true) {
-                            myImage.classList.add("yes");
+                if (favoriteCities.findIndex(city => city.name === cityName.textContent) === -1) {
+                    favoriteCities.push(favoriteCity);
+                    localStorage.setItem('favoriteCities', JSON.stringify(favoriteCities));
+
+                    favoriteCities.forEach((city) => {
+                        if (city.name == cityName.textContent) {
+                            if (city.favorite === true) {
+                                myImage.classList.add("yes");
+                            }
                         }
-                    }
-                });
+                    });
+                }
+
             } else {
                 let selectedCity = favoriteCities.map((city) => city.name).indexOf(cityName.textContent);
 
@@ -113,12 +138,7 @@ const executeFunc = async (lat, lon) => {
             }
 
             // cleaning the select, then, updating their respective options
-
-            let children = select.children;
-
-            for (let i = children.length - 1; i > 0; i--) {
-                select.removeChild(children[i]);
-            }
+            clearDropDown();
 
             favoriteCities.forEach(city => {
                 updateDropdown(city)
@@ -272,10 +292,15 @@ function initMap() {
         if (place.geometry) {
             const lat = place.geometry.location.lat();
             const lon = place.geometry.location.lng();
+
             if (typeof toggleFavorite === "function") {
                 myImage.removeEventListener("click", toggleFavorite)
             }
-            console.log(lat, lon)
+
+            if (typeof changeDropDown === "function") {
+                select.removeEventListener("change", changeDropDown)
+            }
+
             executeFunc(lat, lon);
             fetch5daysWeather(lat, lon);
             const getHourGap = document.querySelectorAll(".hourRange");
