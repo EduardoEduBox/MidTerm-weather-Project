@@ -1,9 +1,11 @@
 let cityName;
 const select = document.querySelector('#select');
 const myImage = document.getElementById("favoriteBtn");
+const searchInput = document.getElementById("city-input");
 let toggleFavorite;
 let changeDropDown;
 
+//どんどんfavoriteが追加されないように
 const clearDropDown = () => {
     let children = select.children;
     for (let i = children.length - 1; i > 0; i--) {
@@ -38,23 +40,29 @@ const fetchDataAndDisplay = async (lat, lon) => {
 }
 
 
-const executeFunc = async (lat, lon) => {
-
+const updateLatAndLon = (lat, lon) => {
     const latitude = document.getElementById("latitude");
     const longtitude = document.getElementById("longtitude");
     latitude.innerText = lat;
     longtitude.innerText = lon;
+}
+
+const executeFunc = async (lat, lon) => {
+    updateLatAndLon(lat, lon)
 
     await fetchDataAndDisplay(lat, lon)
 
     changeDropDown = (e) => {
         const position = e.target.value.split(' ');
+        console.log("ss")
         if (position.length) {
             myImage.classList.add("yes");
 
             const [lat, lon] = position;
             fetchDataAndDisplay(lat, lon)
             fetch5daysWeather(lat, lon);
+            updateLatAndLon(lat, lon)
+            searchInput.value = "" //clear
         }
     }
 
@@ -134,6 +142,7 @@ const executeFunc = async (lat, lon) => {
                     favoriteCities.splice(selectedCity, 1);
                     localStorage.setItem('favoriteCities', JSON.stringify(favoriteCities));
                     myImage.classList.remove("yes");
+                    select.selectedIndex = 0
                 }
             }
 
@@ -280,10 +289,9 @@ getWeather();
 
 //autocomplete
 function initMap() {
-    const input = document.getElementById("city-input");
-    input.placeholder = "Search Cities";
+    searchInput.placeholder = "Search Cities";
 
-    const autocomplete = new google.maps.places.Autocomplete(input, {
+    const autocomplete = new google.maps.places.Autocomplete(searchInput, {
         types: ["(cities)"],
     });
 
@@ -293,6 +301,7 @@ function initMap() {
             const lat = place.geometry.location.lat();
             const lon = place.geometry.location.lng();
 
+            //executefuncするたびにaddeventで新しい値が生成されちゃうから先にremove
             if (typeof toggleFavorite === "function") {
                 myImage.removeEventListener("click", toggleFavorite)
             }
@@ -308,6 +317,12 @@ function initMap() {
                 div.textContent = "";
             });
         }
+        //set default value in favorite input
+        select.selectedIndex = 0
     });
+    //cleaer input value when focused
+    searchInput.addEventListener("focus", () => {
+        searchInput.value = ""
+    })
 }
 
