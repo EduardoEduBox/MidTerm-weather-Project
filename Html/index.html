@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,7 +9,9 @@
     <link rel="stylesheet" href="../Css/style.css" />
   </head>
 
-  <body>
+</head>
+
+<body>
     <nav>
       <div>
         <p>Favorite cities</p>
@@ -35,21 +38,16 @@
             alt=""
           />
         </div>
-      </div>
-      <div class="currentWeatherTemperature">
-        <h3>Current Temp: <span id="currentTemp"></span></h3>
-        <div id="weatherIcon"></div>
-      </div>
 
-      <div class="currentWeatherInfo">
-        <div id="weatherInforDetail">
-          <h3 id="weatherDescription"></h3>
-          <p>min Temp <span id="minTemp"></span></p>
-          <p>max Temp <span id="maxTemp"></span></p>
-          <p>Humidity: <span id="humidity"></span>%</p>
-          <p>Wind: <span id="windSpeed"></span> m/s</p>
+        <div class="currentWeatherInfo">
+            <div id="weatherInforDetail">
+                <h3 id="weatherDescription"></h3>
+                <p>min Temp <span id="minTemp"></span></p>
+                <p>max Temp <span id="maxTemp"></span></p>
+                <p>Humidity: <span id="humidity"></span>%</p>
+                <p>Wind: <span id="windSpeed"></span> m/s</p>
+            </div>
         </div>
-      </div>
     </main>
 
     <section id="dailyForecast">
@@ -146,5 +144,6 @@
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDoagFtZglLk9Jwc39rKnvTR47ZvWTspJ8&libraries=places&callback=initMap"
     ></script>
     <script src="../JS/backgroundImages.js"></script>
-  </body>
+</body>
+
 </html>

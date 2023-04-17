@@ -79,8 +79,7 @@ const executeFunc = async (lat, lon) => {
       select.appendChild(option);
     }
 
-    // getting all favorite cities from localStorage, then checking with the actual city
-    // after everything ok, add the image classList and updating the dropdown
+    select.addEventListener("change", changeDropDown);
 
     if (favoriteCities) {
       clearDropDown();
@@ -235,7 +234,7 @@ const fetch5daysWeather = async (lat, lon) => {
 
     storageWeekTemperatureData = new Promise((resolve, reject) => {
       resolve(storageWeekTemperatureDataArray);
-    })
+    });
 
     if (dateElement && weatherElement && tempElement && iconElement) {
       dateElement.textContent = data.date;
@@ -247,10 +246,8 @@ const fetch5daysWeather = async (lat, lon) => {
   });
 
   storageWeekTemperatureData.then((items) => {
-    items.map((item) => (
-      applyBackgroundImage(item.weather)
-    ))
-  })
+    items.map((item) => applyBackgroundImage(item.weather));
+  });
 
   //get 3hours
   const getDate = document.querySelectorAll(".date-link");
@@ -281,11 +278,10 @@ const fetch5daysWeather = async (lat, lon) => {
         // sorry for the long text
         dateHourRangeArray.push(hourGap);
         applyHourRangeBackgroundByHourGapDescription(hourGap, index);
-
+        git;
       });
     });
   });
-
 };
 
 //Current Weather
@@ -360,7 +356,8 @@ function initMap() {
 
 const weather = {
   cloudyDay: "url(../Css/assets/weatherImages/cloudy_day.png)",
-  scatteredCloudsDay: "url(../Css/assets/weatherImages/scatteredClouds_day.png)",
+  scatteredCloudsDay:
+    "url(../Css/assets/weatherImages/scatteredClouds_day.png)",
   sunnyDay: "url(../Css/assets/weatherImages/clearSky_day.png)",
   rainingDay: "url(../Css/assets/weatherImages/raining_day.png)",
   lightRainingDay: "url(../Css/assets/weatherImages/lightRaining_day.png)",
@@ -370,35 +367,34 @@ const weather = {
 
 function applyBackgroundImage() {
   const weather2 = document.querySelectorAll(".dailyForecastDate");
-  
+
   const dayRange = document.querySelectorAll(".date-link");
-  
+
   let i = 0;
 
   dayRange.forEach((day) => {
-    switch(weather2[i].textContent) {
+    switch (weather2[i].textContent) {
       case "overcast clouds":
         day.style.backgroundImage = weather.cloudyDay;
-      break;
+        break;
       case "light rain":
         day.style.backgroundImage = weather.lightRainingDay;
-      break;
+        break;
       case "moderate rain":
         day.style.backgroundImage = weather.rainingDay;
-      break;
+        break;
       case "clear sky":
         day.style.backgroundImage = weather.sunnyDay;
-      break;
+        break;
       case "broken clouds" || "scattered clouds" || "few clouds":
         day.style.backgroundImage = weather.scatteredCloudsDay;
-      break;
-      case "light snow": 
+        break;
+      case "light snow":
         day.style.backgroundImage = weather.heavySnowDay;
-      break;
+        break;
     }
 
     i++;
-
   });
 }
 
@@ -411,7 +407,8 @@ function applyHourRangeBackgroundByHourGapDescription(hourGap, index) {
 
   const weather = {
     cloudyDay: "url(../Css/assets/weatherImages/cloudy_day.png)",
-    scatteredCloudsDay: "url(../Css/assets/weatherImages/scatteredClouds_day.png)",
+    scatteredCloudsDay:
+      "url(../Css/assets/weatherImages/scatteredClouds_day.png)",
     sunnyDay: "url(../Css/assets/weatherImages/clearSky_day.png)",
     rainingDay: "url(../Css/assets/weatherImages/raining_day.png)",
     lightRainingDay: "url(../Css/assets/weatherImages/lightRaining_day.png)",
@@ -419,30 +416,30 @@ function applyHourRangeBackgroundByHourGapDescription(hourGap, index) {
     heavySnowDay: "url(../Css/assets/weatherImages/heavySnow_day.png)",
   };
 
-  switch(description) {
+  switch (description) {
     case "overcast clouds":
       hourGapDiv.style.backgroundImage = weather.cloudyDay;
-    break;
+      break;
     case "light rain":
       hourGapDiv.style.backgroundImage = weather.lightRainingDay;
-    break;
+      break;
     case "moderate rain":
       hourGapDiv.style.backgroundImage = weather.rainingDay;
-    break;
+      break;
     case "clear sky":
       hourGapDiv.style.backgroundImage = weather.sunnyDay;
-    break;
+      break;
     case "broken clouds":
-      hourGapDiv.style.backgroundImage = weather.scatteredCloudsDay;  
-    break;
+      hourGapDiv.style.backgroundImage = weather.scatteredCloudsDay;
+      break;
     case "scattered clouds":
-      hourGapDiv.style.backgroundImage = weather.scatteredCloudsDay;  
-    break;
+      hourGapDiv.style.backgroundImage = weather.scatteredCloudsDay;
+      break;
     case "few clouds":
-      hourGapDiv.style.backgroundImage = weather.scatteredCloudsDay;  
-    break;
+      hourGapDiv.style.backgroundImage = weather.scatteredCloudsDay;
+      break;
     case "light snow":
       hourGapDiv.style.backgroundImage = weather.heavySnowDay;
-    break;
+      break;
   }
 }
