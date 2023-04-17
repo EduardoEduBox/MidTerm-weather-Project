@@ -7,34 +7,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather</title>
     <link rel="stylesheet" href="../Css/style.css" />
+  </head>
 
 </head>
 
 <body>
     <nav>
-        <div>
-            <p>Favorite cities</p>
-            <select name="" id="select">
-                <option value="" disabled selected>Select city</option>
-            </select>
-        </div>
-        <input id="city-input" type="text" />
+      <div>
+        <p>Favorite cities</p>
+        <select name="" id="select">
+          <option value="" disabled selected>Select city</option>
+        </select>
+      </div>
+      <input id="city-input" type="text" />
     </nav>
 
     <main id="currentWeather">
-        <div class="currentWeatherCity">
-            <h3 id="cityName"></h3>
-            <div class="weatherPosition">
-                <span id="latitude"></span>
-                <span id="longtitude"></span>
-            </div>
-            <div class="currentWeatherStarIcon">
-                <img id="favoriteBtn" src="../Css/assets/Star_icon_stylized.svg.png" alt="" />
-            </div>
+      <div class="currentWeatherCity">
+        <div class="latAndLon">
+          <h3 id="cityName"></h3>
+          <div class="weatherPosition">
+            <span id="latitude"></span>
+            <span id="longtitude"></span>
+          </div>
         </div>
-        <div class="currentWeatherTemperature">
-            <h3>Current Temp: <span id="currentTemp"></span></h3>
-            <div id="weatherIcon"></div>
+        <div class="currentWeatherStarIcon">
+          <img
+            id="favoriteBtn"
+            src="../Css/assets/Star_icon_stylized.svg.png"
+            alt=""
+          />
         </div>
 
         <div class="currentWeatherInfo">
@@ -49,97 +51,98 @@
     </main>
 
     <section id="dailyForecast">
-        <div class="date-link">
-            <h2>
-                <p id="date1"></p>
-            </h2>
-            <p>
-                <span id="icon1"></span>
-            </p>
-            <p><span id="weather1"></span></p>
-            <p><span id="temp1"></span></p>
-        </div>
-        <div class="date-link">
-            <h2>
-                <p id="date2"></p>
-            </h2>
-            <p>
-                <span id="icon2"></span>
-            </p>
-            <p><span id="weather2"></span></p>
-            <p><span id="temp2"></span></p>
-        </div>
-        <div class="date-link">
-            <h2>
-                <p id="date3"></p>
-            </h2>
-            <p>
-                <span id="icon3"></span>
-            </p>
-            <p><span id="weather3"></span></p>
-            <p><span id="temp3"></span></p>
-        </div>
-        <div class="date-link">
-            <h2>
-                <p id="date4"></p>
-            </h2>
-            <p>
-                <span id="icon4"></span>
-            </p>
-            <p><span id="weather4"></span></p>
-            <p><span id="temp4"></span></p>
-        </div>
-        <div class="date-link">
-            <h2>
-                <p id="date5"></p>
-            </h2>
-            <p>
-                <span id="icon5"></span>
-            </p>
-            <p><span id="weather5"></span></p>
-            <p><span id="temp5"></span></p>
-        </div>
+      <div class="date-link">
+        <h2>
+          <p id="date1"></p>
+        </h2>
+        <p>
+          <span id="icon1"></span>
+        </p>
+        <p><span id="weather1" class="dailyForecastDate"></span></p>
+        <p><span id="temp1"></span></p>
+      </div>
+      <div class="date-link">
+        <h2>
+          <p id="date2"></p>
+        </h2>
+        <p>
+          <span id="icon2"></span>
+        </p>
+        <p><span id="weather2" class="dailyForecastDate"></span></p>
+        <p><span id="temp2"></span></p>
+      </div>
+      <div class="date-link">
+        <h2>
+          <p id="date3"></p>
+        </h2>
+        <p>
+          <span id="icon3"></span>
+        </p>
+        <p><span id="weather3" class="dailyForecastDate"></span></p>
+        <p><span id="temp3"></span></p>
+      </div>
+      <div class="date-link">
+        <h2>
+          <p id="date4"></p>
+        </h2>
+        <p>
+          <span id="icon4"></span>
+        </p>
+        <p><span id="weather4" class="dailyForecastDate"></span></p>
+        <p><span id="temp4"></span></p>
+      </div>
+      <div class="date-link">
+        <h2>
+          <p id="date5"></p>
+        </h2>
+        <p>
+          <span id="icon5"></span>
+        </p>
+        <p><span id="weather5" class="dailyForecastDate"></span></p>
+        <p><span id="temp5"></span></p>
+      </div>
     </section>
 
     <section id="hourGap">
-        <div>
-            <h2>0-3</h2>
-            <div class="hourRange" id="hourGap0"></div>
-        </div>
-        <div>
-            <h2>3-6</h2>
-            <div class="hourRange" id="hourGap1"></div>
-        </div>
-        <div>
-            <h2>6-9</h2>
-            <div class="hourRange" id="hourGap2"></div>
-        </div>
-        <div>
-            <h2>9-12</h2>
-            <div class="hourRange" id="hourGap3"></div>
-        </div>
-        <div>
-            <h2>12-15</h2>
-            <div class="hourRange" id="hourGap4"></div>
-        </div>
-        <div>
-            <h2>15-18</h2>
-            <div class="hourRange" id="hourGap5"></div>
-        </div>
-        <div>
-            <h2>18-21</h2>
-            <div class="hourRange" id="hourGap6"></div>
-        </div>
-        <div>
-            <h2>21-24</h2>
-            <div class="hourRange" id="hourGap7"></div>
-        </div>
+      <div class="hourGapContainer" id="container0">
+        <h2>0-3</h2>
+        <div class="hourRange" id="hourGap0"></div>
+      </div>
+      <div class="hourGapContainer" id="container1">
+        <h2>3-6</h2>
+        <div class="hourRange" id="hourGap1"></div>
+      </div>
+      <div class="hourGapContainer" id="container2">
+        <h2>6-9</h2>
+        <div class="hourRange" id="hourGap2"></div>
+      </div>
+      <div class="hourGapContainer" id="container3">
+        <h2>9-12</h2>
+        <div class="hourRange" id="hourGap3"></div>
+      </div>
+      <div class="hourGapContainer" id="container4">
+        <h2>12-15</h2>
+        <div class="hourRange" id="hourGap4"></div>
+      </div>
+      <div class="hourGapContainer" id="container5">
+        <h2>15-18</h2>
+        <div class="hourRange" id="hourGap5"></div>
+      </div>
+      <div class="hourGapContainer" id="container6">
+        <h2>18-21</h2>
+        <div class="hourRange" id="hourGap6"></div>
+      </div>
+      <div class="hourGapContainer" id="container7">
+        <h2>21-24</h2>
+        <div class="hourRange" id="hourGap7"></div>
+      </div>
     </section>
 
-
     <script src="../JS/weatherAPIs.js"></script>
-    <script async
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDoagFtZglLk9Jwc39rKnvTR47ZvWTspJ8&libraries=places&callback=initMap"></script>
+    <script
+      async
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDoagFtZglLk9Jwc39rKnvTR47ZvWTspJ8&libraries=places&callback=initMap"
+    ></script>
     <script src="../JS/backgroundImages.js"></script>
 </body>
 

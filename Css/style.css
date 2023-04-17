@@ -70,8 +70,14 @@ main .currentWeatherCity {
   justify-content: center;
   box-sizing: border-box;
 }
-main .currentWeatherCity .weatherPosition {
-  display: none;
+main .currentWeatherCity .latAndLon {
+  display: flex;
+  flex-direction: column;
+}
+main .currentWeatherCity .latAndLon div {
+  margin-top: -1.5rem;
+  display: flex;
+  flex-direction: column;
 }
 main .currentWeatherCity .currentWeatherStarIcon {
   position: relative;
@@ -99,8 +105,9 @@ main .currentWeatherInfo {
   flex-direction: column;
   justify-content: center;
   padding: 0px 2rem 0px 2rem;
-  background-color: rgb(0, 109, 109);
-  border-radius: 1vw;
+  background-color: rgb(66, 90, 112);
+  border-radius: 3vw 0.5vw 3vw 0.5vw;
+  box-shadow: 10px 10px rgba(0, 0, 0, 0.3);
 }
 main .currentWeatherInfo #weatherInforDetail {
   gap: 3rem;
@@ -114,14 +121,21 @@ main .currentWeatherInfo #weatherInforDetail {
   justify-content: space-evenly;
   background-color: rgb(27, 33, 39);
 }
+#dailyForecast .date-link {
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+}
 #dailyForecast div {
   height: -moz-fit-content;
   height: fit-content;
   width: 15%;
   text-align: center;
-  background-color: rgb(0, 109, 109);
+  background-color: rgb(66, 90, 112);
   color: rgb(255, 250, 228);
-  border-radius: 1vw;
+  border-radius: 3vw 0.5vw 3vw 0.5vw;
+  font-size: calc(1.8rem - 10px);
+  box-shadow: 10px 10px rgba(0, 0, 0, 0.3);
 }
 #dailyForecast div p {
   margin-top: auto;
@@ -137,14 +151,17 @@ main .currentWeatherInfo #weatherInforDetail {
 }
 #hourGap > div {
   height: 100%;
-  width: 12%;
+  width: 11.5%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  background-color: rgb(0, 109, 109);
-  border-radius: 1vw;
+  background-color: rgb(66, 90, 112);
+  border-radius: 1vh 1vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding-bottom: 1r;
 }
 
 @media (max-width: 768px) {
@@ -208,6 +225,9 @@ main .currentWeatherInfo #weatherInforDetail {
     width: 70%;
     height: -moz-fit-content;
     height: fit-content;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
   }
   #hourGap div div {
     display: flex;
